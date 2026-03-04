@@ -81,8 +81,7 @@ function submitTransfer() {
   try {
     TokenWallet.transferTokens(to, amt, note);
     closeTransferModal();
-    // Auto-save after transfer
-    setTimeout(() => TokenWallet.exportWallet(), 500);
+    TokenWallet.exportWallet();
   } catch (err) {
     alert("Transfer failed: " + err.message);
   }
