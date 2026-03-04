@@ -6,9 +6,9 @@ An interactive fan page for **Mike Tyson's Punch-Out!!** (NES, 1987) featuring:
 - 🥊 **Punch Mini-Game** — Hit moving targets in the boxing ring to rack up combos and earn tokens; KO Tyson for a bonus!
 - 📺 **Video Player** — Real Mike Tyson boxing matches, NES Punch-Out!! full gameplay, and highlight reels (earn tokens just for watching)
 - 📖 **NES Lore Carousel** — Mike Tyson & Punch-Out!! history, cartridge facts, and Nintendo era nostalgia
-- 🪙 **Mario Token Wallet** — Earn, hold, and transfer tokens synced with the [Mario-World-Tokens](https://github.com/pewpi-infinity/Mario-world-tokens) repo and [MARIO-TOKENS emulator](https://github.com/pewpi-infinity/MARIO-TOKENS)
-- 🔗 **Hamburger Navigation** — Links to all connected gaming repos and sites
-- 💾 **Wallet → GitHub Commit** — Connect your GitHub PAT and every sync/transfer commits `wallet/wallet.json` to this repo with a full transaction history
+- 🕹️ **Nintendo Emulator First** — Main/top section opens the emulator view first with the Punch-Out ROM download link
+- 🪙 **Mario Token Wallet** — Earn, hold, transfer tokens, and save your wallet locally without PAT setup
+- 🔗 **Hamburger Navigation** — In-page navigation with quick return to main view
 - 🧾 **Transfer Receipts** — Every token transfer generates a printable receipt
 
 ## Live Site
@@ -25,18 +25,12 @@ An interactive fan page for **Mike Tyson's Punch-Out!!** (NES, 1987) featuring:
 | KO Tyson in mini-game | +10 🪙 bonus |
 | Watch a video | 2 🪙 |
 
-## Wallet Sync
+## Wallet Save
 
-1. Generate a GitHub PAT at [github.com/settings/tokens](https://github.com/settings/tokens/new?scopes=repo&description=PunchoutWallet) with `repo` scope
-2. Paste it in the **Connect GitHub Account** box on the Wallet page
-3. Click **Sync to GitHub** — this commits `wallet/wallet.json` to the repo
-4. Every transfer creates a receipt and auto-syncs
-
-## Connected Repos
-
-- [MARIO-TOKENS Emulator](https://github.com/pewpi-infinity/MARIO-TOKENS)
-- [Mario-World-Tokens](https://github.com/pewpi-infinity/Mario-world-tokens)
-- [Mike-Tyson-s-Punchout](https://github.com/pewpi-infinity/Mike-Tyson-s-Punchout) ← you are here
+1. Enter a wallet username in **Secure Wallet Login**
+2. Play trivia, videos, and mini-game to earn tokens
+3. Click **Save Wallet** to export your wallet data
+4. Every transfer still creates a receipt
 
 ## Tech Stack
 

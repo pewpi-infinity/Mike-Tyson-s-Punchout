@@ -39,36 +39,19 @@ function showSection(id) {
   if (toggle) toggle.innerHTML = "☰";
 }
 
-// ── GitHub Auth (PAT stored in localStorage) ────────────────────────────────
-function connectGitHub() {
-  const pat = document.getElementById("gh-pat-input")?.value?.trim();
-  if (!pat) return alert("Please paste your GitHub token first.");
-
-  localStorage.setItem("gh_token", pat);
-  document.getElementById("gh-pat-input").value = "";
-
-  // Try to fetch user info
-  fetch("https://api.github.com/user", {
-    headers: { Authorization: "Bearer " + pat },
-  })
-    .then((r) => {
-      if (!r.ok) throw new Error("Invalid token");
-      return r.json();
-    })
-    .then((user) => {
-      TokenWallet.setOwner(user.login);
-      document.getElementById("gh-status").innerHTML =
-        `✅ Connected as <strong>${user.login}</strong>`;
-      TokenWallet.renderWallet();
-    })
-    .catch(() => {
-      document.getElementById("gh-status").innerHTML =
-        "❌ Could not authenticate. Check your token.";
-    });
+// ── Wallet login ──────────────────────────────────────────────────────────────
+function connectWallet() {
+  const username = document.getElementById("wallet-login-input")?.value?.trim();
+  if (!username) return alert("Please enter a wallet username.");
+  TokenWallet.setOwner(username);
+  document.getElementById("wallet-login-input").value = "";
+  document.getElementById("gh-status").innerHTML =
+    `✅ Logged in as <strong>${username}</strong>`;
+  TokenWallet.renderWallet();
 }
 
 function syncWallet() {
-  TokenWallet.commitWalletToRepo();
+  TokenWallet.exportWallet();
 }
 
 // ── Transfer Form ────────────────────────────────────────────────────────────
@@ -98,8 +81,8 @@ function submitTransfer() {
   try {
     TokenWallet.transferTokens(to, amt, note);
     closeTransferModal();
-    // Auto-sync after transfer
-    setTimeout(() => TokenWallet.commitWalletToRepo(), 500);
+    // Auto-save after transfer
+    setTimeout(() => TokenWallet.exportWallet(), 500);
   } catch (err) {
     alert("Transfer failed: " + err.message);
   }
@@ -367,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderLore();
 
   // Default section
-  showSection("section-home");
+  showSection("section-emulator");
 
   // Trivia next button
   const nextBtn = document.getElementById("trivia-next");
