@@ -1,0 +1,12 @@
+{
+  "owner": null,
+  "balance": 0,
+  "transactions": [],
+  "lastUpdated": null,
+  "_meta": {
+    "repo": "pewpi-infinity/Mike-Tyson-s-Punchout",
+    "tokenRepo": "pewpi-infinity/Mario-world-tokens",
+    "emulatorRepo": "pewpi-infinity/MARIO-TOKENS",
+    "description": "Mario Token wallet state for Mike Tyson's Punchout interactive gaming page. This file is automatically updated via GitHub API whenever the user clicks 'Sync to GitHub' or makes a transfer."
+  }
+}
