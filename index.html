@@ -1,3 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🥊 Mike Tyson's Punch-Out!! — Interactive Gaming + Mario Token Wallet</title>
+  <meta name="description" content="Mike Tyson's Punchout interactive gaming page — earn Mario tokens through trivia, history, punch mini-game, and more. Token wallet synced to GitHub." />
+
+  <!-- NES / Pixel font from Google Fonts CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ── Coin animation container ───────────────────────────────────────────── -->
+<div id="coin-animation-container" aria-hidden="true"></div>
+
+<!-- ── Hamburger side nav ─────────────────────────────────────────────────── -->
+<nav id="nav-menu" aria-label="Site navigation">
+  <div class="nav-section-label">🎮 This Site</div>
+  <button class="nav-btn" onclick="showSection('section-home')">🏠 Home</button>
+  <button class="nav-btn" onclick="showSection('section-wallet')">🪙 Token Wallet</button>
+  <button class="nav-btn" onclick="showSection('section-trivia')">🧠 Trivia &amp; History</button>
+  <button class="nav-btn" onclick="showSection('section-game')">🥊 Punch Mini-Game</button>
+  <button class="nav-btn" onclick="showSection('section-videos')">📺 Video Player</button>
+  <button class="nav-btn" onclick="showSection('section-lore')">📖 NES Lore</button>
+
+  <div class="nav-section-label">🔗 Gaming Repos</div>
+  <a class="nav-ext-link" href="https://github.com/pewpi-infinity/MARIO-TOKENS" target="_blank" rel="noopener">MARIO-TOKENS Emulator</a>
+  <a class="nav-ext-link" href="https://github.com/pewpi-infinity/Mario-world-tokens" target="_blank" rel="noopener">Mario-World-Tokens</a>
+  <a class="nav-ext-link" href="https://github.com/pewpi-infinity/Mike-Tyson-s-Punchout" target="_blank" rel="noopener">Punchout Repo</a>
+
+  <div class="nav-section-label">🌐 Sites</div>
+  <a class="nav-ext-link" href="https://pewpi-infinity.github.io/MARIO-TOKENS/" target="_blank" rel="noopener">Mario Tokens Site</a>
+  <a class="nav-ext-link" href="https://pewpi-infinity.github.io/Mario-world-tokens/" target="_blank" rel="noopener">Mario World Tokens</a>
+  <a class="nav-ext-link" href="https://pewpi-infinity.github.io/Mike-Tyson-s-Punchout/" target="_blank" rel="noopener">This Site (gh-pages)</a>
+
+  <div class="nav-section-label">📦 Resources</div>
+  <a href="https://en.wikipedia.org/wiki/Mike_Tyson" target="_blank" rel="noopener">Mike Tyson Wikipedia</a>
+  <a href="https://en.wikipedia.org/wiki/Mike_Tyson%27s_Punch-Out!!" target="_blank" rel="noopener">Punch-Out!! Wikipedia</a>
+</nav>
+
+<!-- ── Site header ─────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="site-logo">
+    <span>🥊</span>
+    <div>Mike Tyson's<br>Punch-Out!!</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div style="font-size:10px;color:#ffd600;">
+      🪙 <span id="wallet-balance-header">0</span>
+    </div>
+    <button id="hamburger-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </div>
+</header>
+
+<!-- ── Main content ────────────────────────────────────────────────────────── -->
+<main class="main-content">
+
+  <!-- ── HOME ──────────────────────────────────────────────────────────────── -->
+  <section id="section-home" class="section-panel">
+
+    <div class="hero">
+      <div class="hero-title">🥊 IRON MIKE'S PUNCHOUT 🥊</div>
+      <div class="hero-sub">Interactive Gaming • Mario Token Rewards • History &amp; Trivia</div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span class="stat-val">50</span>
+          <span class="stat-label">Career Wins</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">44</span>
+          <span class="stat-label">By KO</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">1987</span>
+          <span class="stat-label">NES Release</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">20</span>
+          <span class="stat-label">Youngest Champ</span>
+        </div>
+      </div>
+      <div class="quick-nav">
+        <button onclick="showSection('section-trivia')">🧠 Play Trivia</button>
+        <button onclick="showSection('section-game')">🥊 Punch Game</button>
+        <button onclick="showSection('section-videos')">📺 Videos</button>
+        <button onclick="showSection('section-wallet')">🪙 My Wallet</button>
+        <button onclick="showSection('section-lore')">📖 NES Lore</button>
+      </div>
+    </div>
+
+    <!-- Mini wallet preview on home -->
+    <div class="wallet-card" style="margin-bottom:0">
+      <div class="wallet-header">
+        <div>
+          <div class="wallet-balance-display">
+            🪙 <span id="wallet-balance-home">0</span>
+            <small>Mario Tokens — <span id="wallet-owner-home">Not connected</span></small>
+          </div>
+        </div>
+        <div class="wallet-actions">
+          <button class="btn-sync" onclick="showSection('section-wallet')">Open Wallet ▶</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── WALLET ─────────────────────────────────────────────────────────────── -->
+  <section id="section-wallet" class="section-panel">
+    <h2 class="section-title">🪙 Mario Token Wallet</h2>
+
+    <!-- GitHub connect -->
+    <div class="gh-connect">
+      <h3>🔐 Connect GitHub Account</h3>
+      <p style="font-size:9px;color:#9e9e9e;margin-bottom:10px;">
+        Connect your GitHub account to sync your wallet to the repo and commit transfer records.
+        Generate a token at <a href="https://github.com/settings/tokens/new?scopes=repo&description=PunchoutWallet" target="_blank" rel="noopener">github.com/settings/tokens</a> (needs <code>repo</code> scope).
+      </p>
+      <div class="gh-connect-row">
+        <input type="password" id="gh-pat-input" placeholder="Paste GitHub Personal Access Token…" autocomplete="off" />
+        <button onclick="connectGitHub()">Connect</button>
+      </div>
+      <div id="gh-status"></div>
+    </div>
+
+    <!-- Wallet balance -->
+    <div class="wallet-card">
+      <div id="wallet-notice" class="wallet-notice"></div>
+      <div class="wallet-header">
+        <div>
+          <div class="wallet-balance-display">
+            🪙 <span id="wallet-balance">0</span>
+            <small>Tokens — Owner: <span id="wallet-owner">Anonymous</span></small>
+          </div>
+        </div>
+        <div class="wallet-actions">
+          <button class="btn-sync" onclick="syncWallet()">📤 Sync to GitHub</button>
+          <button class="btn-transfer" onclick="openTransferModal()">💸 Transfer</button>
+        </div>
+      </div>
+
+      <div class="tx-history-wrap">
+        <div class="tx-history-label">📋 Recent Transactions</div>
+        <ul id="tx-history"></ul>
+      </div>
+    </div>
+
+    <div style="font-size:9px;color:#555;margin-top:10px;line-height:1.9;">
+      <strong style="color:#9e9e9e;">How it works:</strong><br>
+      Earn tokens by answering trivia questions, playing the punch mini-game, and watching videos.
+      Tokens are printed by the <a href="https://github.com/pewpi-infinity/Mario-world-tokens" target="_blank" rel="noopener">Mario-World-Tokens</a> repo.
+      Use "Sync to GitHub" to commit your wallet state to the repo — every transfer creates a receipt.
+    </div>
+  </section>
+
+  <!-- ── TRIVIA ─────────────────────────────────────────────────────────────── -->
+  <section id="section-trivia" class="section-panel">
+    <h2 class="section-title">🧠 Mike Tyson Trivia &amp; History</h2>
+
+    <div class="trivia-card">
+      <div id="trivia-category"></div>
+      <div id="trivia-question">Loading…</div>
+      <div id="trivia-options"></div>
+      <div id="trivia-feedback" class="trivia-feedback"></div>
+      <button id="trivia-next">Next Question ▶</button>
+      <div class="trivia-meta">
+        <span id="trivia-score">Session Score: 0 tokens</span>
+        <span>Correct answers earn 🪙 tokens!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PUNCH MINI-GAME ────────────────────────────────────────────────────── -->
+  <section id="section-game" class="section-panel">
+    <h2 class="section-title">🥊 Punch Mini-Game</h2>
+
+    <div class="punch-game-wrap">
+      <p style="font-size:9px;color:#9e9e9e;margin-bottom:12px;">
+        Hit the red target before it moves! Build combos for bonus tokens. KO Tyson for a 10-token bonus! 🪙
+      </p>
+
+      <div class="punch-hud">
+        <div class="hud-item">⏱ <span id="punch-timer">30s</span></div>
+        <div class="hud-item">🔥 Combo: <span id="punch-combo">0</span></div>
+        <div class="hud-item">🪙 Earned: <span id="punch-tokens-earned">0</span></div>
+        <div class="hp-bar-wrap">
+          <div class="hp-label">TYSON HP</div>
+          <div class="hp-bar"><div id="punch-hp"></div></div>
+        </div>
+      </div>
+
+      <div id="punch-ring">
+        <div id="tyson-portrait">🥊</div>
+        <div id="punch-target">👊</div>
+      </div>
+
+      <div class="punch-controls">
+        <button id="btn-punch-start">▶ START FIGHT</button>
+        <span id="punch-result"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VIDEOS ─────────────────────────────────────────────────────────────── -->
+  <section id="section-videos" class="section-panel">
+    <h2 class="section-title">📺 Video Player</h2>
+
+    <div class="video-player-wrap">
+      <div class="video-main">
+        <iframe id="main-video-frame"
+          src=""
+          title="Mike Tyson Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <div id="video-title">Loading…</div>
+        <div id="video-desc"></div>
+        <div style="font-size:8px;color:#555;margin-top:6px;">🪙 +2 tokens awarded for each video selected</div>
+      </div>
+    </div>
+
+    <div class="video-thumbs-wrap">
+      <div class="video-thumbs-label">📼 Select a video:</div>
+      <div id="video-thumbs"></div>
+    </div>
+  </section>
+
+  <!-- ── NES LORE ───────────────────────────────────────────────────────────── -->
+  <section id="section-lore" class="section-panel">
+    <h2 class="section-title">📖 NES Lore &amp; History</h2>
+    <div id="lore-card"></div>
+  </section>
+
+</main>
+
+<!-- ── Footer ──────────────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p>
+    🥊 Mike Tyson's Punch-Out!! Interactive Fan Page &nbsp;|&nbsp;
+    🪙 Powered by <a href="https://github.com/pewpi-infinity/Mario-world-tokens" target="_blank" rel="noopener">Mario-World-Tokens</a>
+    &amp; <a href="https://github.com/pewpi-infinity/MARIO-TOKENS" target="_blank" rel="noopener">MARIO-TOKENS Emulator</a>
+  </p>
+  <p style="margin-top:6px;font-size:8px;">
+    <a href="https://github.com/pewpi-infinity/Mike-Tyson-s-Punchout" target="_blank" rel="noopener">📦 Source Repo</a>
+    &nbsp;•&nbsp;
+    <a href="wallet/wallet.json" target="_blank" rel="noopener">💾 Wallet Data</a>
+    &nbsp;•&nbsp;
+    For entertainment purposes only.
+  </p>
+</footer>
+
+<!-- ── Transfer Modal ──────────────────────────────────────────────────────── -->
+<div id="transfer-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="transfer-modal-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeTransferModal()" aria-label="Close">✕</button>
+    <h3 id="transfer-modal-title">💸 Transfer Tokens</h3>
+    <div class="form-row">
+      <label for="transfer-to">Recipient GitHub Username</label>
+      <input type="text" id="transfer-to" placeholder="e.g. octocat" autocomplete="off" />
+    </div>
+    <div class="form-row">
+      <label for="transfer-amount">Amount (tokens)</label>
+      <input type="number" id="transfer-amount" min="1" placeholder="10" />
+    </div>
+    <div class="form-row">
+      <label for="transfer-note">Note (optional)</label>
+      <input type="text" id="transfer-note" placeholder="Thanks for the game!" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeTransferModal()">Cancel</button>
+      <button class="btn-confirm" onclick="submitTransfer()">Send Tokens 🪙</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Receipt Modal ───────────────────────────────────────────────────────── -->
+<div id="receipt-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeReceiptModal()" aria-label="Close">✕</button>
+    <h3 id="receipt-modal-title">🧾 Transfer Receipt</h3>
+    <div id="receipt-content"></div>
+    <div class="modal-actions">
+      <button class="btn-confirm" onclick="closeReceiptModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/tokens.js"></script>
+<script src="js/trivia.js"></script>
+<script src="js/app.js"></script>
+
+<!-- Sync the home wallet balance display -->
+<script>
+  (function syncHomeBalance() {
+    // Mirror wallet balance to home section and header every 500ms
+    setInterval(() => {
+      const main = document.getElementById('wallet-balance');
+      const home = document.getElementById('wallet-balance-home');
+      const header = document.getElementById('wallet-balance-header');
+      const ownerHome = document.getElementById('wallet-owner-home');
+      const ownerMain = document.getElementById('wallet-owner');
+      if (main && home) home.textContent = main.textContent;
+      if (main && header) header.textContent = main.textContent;
+      if (ownerMain && ownerHome) ownerHome.textContent = ownerMain.textContent;
+    }, 500);
+  })();
+</script>
+
+</body>
 <!doctype html>
 <html lang="en">
   <head>
