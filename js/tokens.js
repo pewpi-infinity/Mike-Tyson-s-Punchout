@@ -119,6 +119,20 @@ const TokenWallet = (() => {
     return receipt;
   }
 
+  function exportWallet() {
+    const w = _load();
+    const blob = new Blob([JSON.stringify(w, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "wallet.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    _showNotice("✅ Wallet exported.", "success");
+  }
+
   // ── GitHub commit (wallet state → repo) ──────────────────────────────────
   /**
    * Commits the current wallet.json to the repo via GitHub API.
@@ -277,6 +291,7 @@ const TokenWallet = (() => {
     earnTokens,
     transferTokens,
     receiveTokens,
+    exportWallet,
     commitWalletToRepo,
     init,
     renderWallet: _renderWallet,
