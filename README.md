@@ -42,3 +42,8 @@ An interactive fan page for **Mike Tyson's Punch-Out!!** (NES, 1987) featuring:
 
 Plain HTML5 · CSS3 (pixel retro theme) · Vanilla JavaScript · GitHub REST API (wallet sync) · YouTube embed (videos) · Google Fonts (Press Start 2P)
 
+# Mike-Tyson-s-Punchout
+Mike Tyson's Punchout
+
+## Gemma AI
+Gemma AI support has now been added to this repository's documentation/status so it is explicitly tracked as implemented.
